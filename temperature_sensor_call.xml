@@ -1,1 +1,27 @@
+if(100-conf) > 70:
+  isTempOk, body_tempt = CheckTempt.run()
+  tt = f'({Id}) {aa[0]} [{body_tempt} derjat] '
+  cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
+  cv2.putText(img, str(tt), (x+5, y-5), font, 1, (255, 0, 0), 2)
+  if Id != userid :
+      if isTemptOk :
+          userid = Id
+          username = aa
+          #insert visitors
+          Visitors.add(Id,aa)
+          #save visitors
+          Visitors = save()
+          #print success
+          output.update(f'Welcome {username[0]} Please wait...')
+          #led.green()
+          Led.runServo()
+          print("was saved")
+          timeout = time.time() + 60*0.167
+      else :
+          output.update("No entry, body temperature exceeds 37.5 degrees ')
+          Led.runBuzzer()
+
+
+
+
 
