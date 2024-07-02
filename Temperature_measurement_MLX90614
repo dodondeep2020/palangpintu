@@ -1,1 +1,6 @@
-
+def run():
+    celcius = round(sensor.get_obj_temp(),2)
+    body_tempt = celsius + calibration_val
+    print(f'your body tempt : {body_tempt}')
+    isTemptOk = body_tempt < max_tempt
+    return isTemptOk, body_tempt
