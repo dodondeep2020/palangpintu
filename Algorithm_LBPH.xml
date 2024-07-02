@@ -1,1 +1,5 @@
+recognizer = cv.face.LBPHFaceRecognizer_create()
+output = window['-OUT-']
+recognizer.read(sys.path[0]+os.sep+"data"+os.sep+recognation_model"+os.sep+"trainer.yml")
+detectorFace = cv2.CascadeClassifier(cv.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
