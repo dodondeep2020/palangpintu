@@ -1,1 +1,15 @@
-
+def getImagesAndLabels(path):
+  ImagePaths = [os.path.join(path, f) for f in os.listdir(path)]
+  value = len(imagePaths)
+  faces = []]
+  Ids = []
+  i = 1
+  for imagePath in imagePaths:
+    pilImage = Image.open(imagePath).convert('L')
+    imageNp = np.array(ilImage, 'uint8')
+    Id = int(os.path.split(imagePath)[-1].split(".")[1])
+    faces.appen(imaneNp)
+    Ids.append(Id)
+    sg.one_line_progress_meter('Recognize photos', i, value, 'key', 'Please wait..', orientation="h")
+    i+=1
+return faces, Ids
