@@ -3,3 +3,22 @@ output = window['-OUT-']
 recognizer.read(sys.path[0]+os.sep+"data"+os.sep+recognation_model"+os.sep+"trainer.yml")
 detectorFace = cv2.CascadeClassifier(cv.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
+ret, img = cam.read()
+#img = cv2.flip(img, -1)
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+faces = detector.detectMultiScale(gray, 1.3, 5, minSize=(30,30),flags = cv2.CASCADE_SCALE_IMAGE)
+if len(faces) :
+    for(x,y,w,h) in faces:
+    cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
+    Id, conf = recognizer.predict(gray[y:y+h, x:x+w])
+    #show rectangle
+    if conf < 100:
+        aa = df.loc[df['Id'] == Id]['Name'].values
+        confstr = "   {0}%".format(round(100 - conf))
+        tt = str(Id)+"-"+aa
+    else:
+      Id = '  Unrecognize  '
+      tt = str(Id)
+      confstr = "   {0}%".format(round(100 - conf))
+    tt = str(tt)[2:-2]
+      
